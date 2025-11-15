@@ -19,23 +19,23 @@ const Brands = () => {
             <h1 className='text-3xl text-secondary text-center mb-16 font-semibold'>
                 We've helped thousands of sales teams
             </h1>
-            <Swiper 
-            slidesPerView={4}
-            centeredSlides={true}
-            spaceBetween={30}
-            grabCursor={true}
-            loop={true}
-            autoplay={{
-                delay: 800,
-                disableOnInteraction: false,
-            }}
-            modules={[Autoplay]}
-        >
-            {
+            <Swiper
+                slidesPerView={4}
+                centeredSlides={true}
+                spaceBetween={30}
+                grabCursor={true}
+                loop={true}
+                autoplay={{
+                    delay: 800,
+                    disableOnInteraction: false,
+                }}
+                modules={[Autoplay]}
+            >
+                {
 
-                brandLogos.map((logo, index) => <SwiperSlide key={index}><img src={logo} alt="brand-logo" /></SwiperSlide>)
-            }
-        </Swiper>
+                    brandLogos.map((logo, index) => <SwiperSlide key={index}><img src={logo} alt="brand-logo" /></SwiperSlide>)
+                }
+            </Swiper>
         </div>
     );
 };
