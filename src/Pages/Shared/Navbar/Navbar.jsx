@@ -1,15 +1,17 @@
 import React from 'react';
 import Logo from '../../../Components/Logo/Logo';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import "./navbar.css";
 
 const Navbar = () => {
     const links = <>
-        <li><Link>Services</Link></li>
-        <li><Link>Item 3</Link></li>
+        <li className='px-5 py-4'><NavLink to="/services">Services</NavLink></li>
+        <li className='px-5 py-4'><NavLink to="/coverage">Coverage</NavLink></li>
+        <li className='px-5 py-4'><NavLink to="/about-us">About Us</NavLink></li>
     </>
     return (
-        <div>
-            <div className="navbar bg-base-100 shadow-sm">
+        <div className='py-7 flex justify-center items-center'>
+            <div className="navbar py-6 px-8 rounded-[20px] bg-white shadow-sm">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -21,10 +23,10 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost text-xl"><Logo /></Link>
+                    <Link to="/" className="pl-3 mb-4 text-xl"><Logo /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="text-accent menu menu-horizontal">
                         {links}
                     </ul>
                 </div>

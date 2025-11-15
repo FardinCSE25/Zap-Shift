@@ -7,7 +7,8 @@ import banner3 from "../../../assets/banner/banner3.png";
 
 const Banner = () => {
     return (
-        <Carousel
+        <div className='rounded-[80px]'>
+            <Carousel
             autoPlay={true}
             infiniteLoop={true}
         >
@@ -21,6 +22,7 @@ const Banner = () => {
                 <img src={banner3} />
             </div>
         </Carousel>
+        </div>
     );
 };
 
