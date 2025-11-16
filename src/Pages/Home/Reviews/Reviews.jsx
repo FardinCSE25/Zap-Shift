@@ -21,11 +21,12 @@ const Reviews = ({ reviewsPromise }) => {
           Enhance posture, mobility, and well-being effortlessly with Posture Pro. Achieve proper alignment, reduce pain, and strengthen your body with ease!
         </p>
       </div>
-      <>
+      
         <Swiper
           loop={true}
           effect={'coverflow'}
           grabCursor={true}
+          spaceBetween={30}
           centeredSlides={true}
           slidesPerView={3}
           coverflowEffect={{
@@ -55,7 +56,7 @@ const Reviews = ({ reviewsPromise }) => {
           }
 
         </Swiper>
-      </>
+ 
     </div >
   );
 };
