@@ -5,6 +5,11 @@ import Coverage from "../Pages/Coverage/Coverage";
 import Loading from "../Components/Loading"
 import Error from "../Pages/Shared/Error"
 import AboutSection from "../Pages/About/AboutSection";
+import AuthLayout from "../Layouts/AuthLayout";
+import Login from "../Pages/Authentication/Login";
+import Register from "../Pages/Authentication/Register";
+import PrivateRoute from "./PrivateRoute";
+import BeRider from "../Pages/Rider/BeRider";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +31,26 @@ export const router = createBrowserRouter([
                 path: "about-us",
                 Component: AboutSection,
             },
+            {
+                path: "be-rider",
+                element: <PrivateRoute>
+                    <BeRider />
+                </PrivateRoute>
+            }
         ]
     },
+    {
+        path: "/",
+        Component: AuthLayout,
+        children: [
+            {
+                path: 'login',
+                Component: Login
+            },
+            {
+                path: 'register',
+                Component: Register
+            }
+        ]
+    }
 ]);

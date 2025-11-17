@@ -21,6 +21,7 @@ const Coverage = () => {
 
     return (
         <div className='bg-white rounded-[80px] mb-32 mt-8 px-[109px] py-20'>
+             <title>Zap Shift-Coverage</title>
             <h3 className='text-5xl font-extrabold text-secondary mb-10'>
                 We are available in 64 districts
             </h3>

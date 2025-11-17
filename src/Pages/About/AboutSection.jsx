@@ -14,6 +14,7 @@ const AboutSection = () => {
 
   return (
     <section className="max-w-[1600px] mx-auto bg-white rounded-2xl shadow-md px-[109px] py-20 mt-8 mb-20">
+       <title>Zap Shift-About Us</title>
       {/* Title */}
       <h2 className="text-5xl font-bold text-secondary mb-4">About Us</h2>
 

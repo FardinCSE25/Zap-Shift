@@ -2,8 +2,18 @@ import React from 'react';
 import Logo from '../../../Components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
 import "./navbar.css";
+import UseAuth from '../../../Hooks/UseAuth';
 
 const Navbar = () => {
+    const { user, logOut } = UseAuth()
+
+    const handleLogout = () => {
+        logOut()
+            .then()
+            .catch(error => {
+                console.log(error);
+            })
+    }
     const links = <>
         <li className='px-5 py-4'><NavLink to="/services">Services</NavLink></li>
         <li className='px-5 py-4'><NavLink to="/coverage">Coverage</NavLink></li>
@@ -31,7 +41,28 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {
+                        user &&
+                        <Link onClick={handleLogout} className="btn md:mr-4 mr-1 hover:bg-white hover:border-2 hover:border-primary text-secondary bg-primary">
+                            Logout
+                        </Link>
+                    }
+                    {
+                        !user &&
+                        <Link to="/login" className="btn md:mr-4 mr-1 hover:bg-white hover:border-2 hover:border-primary text-secondary bg-primary">
+                            Login
+                        </Link>
+                    }
+
+                    {
+                        !user &&
+                        <Link to="/register" className="btn md:mr-4 mr-1 hover:bg-white hover:border-2 hover:border-primary text-secondary bg-primary">
+                            Register
+                        </Link>
+                    }
+                    <Link to="/be-rider" className="btn btn-outline border-2 hover:bg-primary border-primary text-secondary">
+                        Be a Rider
+                    </Link>
                 </div>
             </div>
         </div>
