@@ -18,6 +18,7 @@ const Navbar = () => {
         <li className='px-5 py-4'><NavLink to="/services">Services</NavLink></li>
         <li className='px-5 py-4'><NavLink to="/coverage">Coverage</NavLink></li>
         <li className='px-5 py-4'><NavLink to="/about-us">About Us</NavLink></li>
+        <li className='px-5 py-4'><NavLink to="/send-parcel">Send Parcel</NavLink></li>
     </>
     return (
         <div className='py-7 flex justify-center items-center'>
@@ -60,7 +61,7 @@ const Navbar = () => {
                             Register
                         </Link>
                     }
-                    <Link to="/be-rider" className="btn btn-outline border-2 hover:bg-primary border-primary text-secondary">
+                    <Link to="/be-rider" className="btn btn-outline border-2 hover:bg-primary border-primary bg-gray-100 text-secondary">
                         Be a Rider
                     </Link>
                 </div>

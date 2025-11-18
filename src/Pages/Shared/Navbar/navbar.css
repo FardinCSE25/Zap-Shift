@@ -1,6 +1,10 @@
+/* Navbar.css */
+@reference "../../../index.css";
+
+ul a {
+  @apply text-black hover:bg-primary rounded-[20px];
+}
+
 ul a.active {
-    background-color: #CAEB66;
-    color: black;
-    border-radius: 20px;
-    
+  @apply bg-[#CAEB66] text-black rounded-[20px];
 }
