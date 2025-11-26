@@ -44,6 +44,7 @@ const ApproveRiders = () => {
 
     return (
         <div>
+            <title>Zap Shift-Approve Rider</title>
             <h2 className="text-5xl">Riders Pending Approval: {riders.length} </h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">

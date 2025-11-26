@@ -54,6 +54,7 @@ const UsersManagement = () => {
 
     return (
         <div>
+            <title>Zap Shift-Users Management</title>
             <h2>
                Manage Users : {users.length}
             </h2>
