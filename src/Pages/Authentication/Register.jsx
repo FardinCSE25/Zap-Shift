@@ -4,12 +4,14 @@ import UseAuth from '../../Hooks/UseAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from './Social Login/SocialLogin';
 import axios from 'axios';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { registerUser, updateUserProfile } = UseAuth()
     const location = useLocation()
     const navigate = useNavigate()
+    const axiosSecure = useAxiosSecure()
     const handleRegister = (data) => {
         const profilePhoto = data.photo[0]
         registerUser(data.email, data.password)
@@ -20,23 +22,36 @@ const Register = () => {
                 const photo_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imageHost}`
 
                 axios.post(photo_API_URL, formData)
-                .then(result =>{
-                    console.log(result.data);
+                    .then(result => {
+                        const photoURL = result.data.data.url
+                        console.log(result.data);
 
-                    const userProfile = {
-                        displayName : data.name,
-                        photoURL : result.data.data.url
-                    }
-                    updateUserProfile(userProfile)
-                    .then(()=>{
-                        console.log("Done!");
-                        navigate(location.state || '/')
+                        const userInfo = {
+                            email: data.email,
+                            displayName: data.name,
+                            photoURL: photoURL
+                        }
+                        axiosSecure.post('/users', userInfo)
+                        .then(res=>{
+                            if(res.data.insertedId){
+                                console.log('user created successful');
+                            }
+                        })
+
+                        const userProfile = {
+                            displayName: data.name,
+                            photoURL: result.data.data.url
+                        }
+                        updateUserProfile(userProfile)
+                            .then(() => {
+                                console.log("Done!");
+                                navigate(location.state || '/')
+                            })
+                            .catch(error => {
+                                console.log(error);
+
+                            })
                     })
-                    .catch(error=>{
-                        console.log(error);
-                        
-                    })
-                })
             })
             .catch(error => {
                 console.log(error);

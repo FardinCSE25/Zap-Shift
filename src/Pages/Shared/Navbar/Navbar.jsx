@@ -19,7 +19,15 @@ const Navbar = () => {
         <li className='px-5 py-4'><NavLink to="/coverage">Coverage</NavLink></li>
         <li className='px-5 py-4'><NavLink to="/about-us">About Us</NavLink></li>
         <li className='px-5 py-4'><NavLink to="/send-parcel">Send Parcel</NavLink></li>
+
+        {
+            user && <>
+            <li className='px-5 py-4'><NavLink to="/dashboard/my-parcels">My Parcels</NavLink></li>
+            </>
+        }
     </>
+
+
     return (
         <div className='py-7 flex justify-center items-center'>
             <div className="navbar py-2 px-8 rounded-[20px] bg-white shadow-sm">
