@@ -90,7 +90,7 @@ const AssignRiders = () => {
             </div>
             <dialog ref={riderModalRef} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">Riders: {riders.length}!</h3>
+                    <h3 className="font-bold text-lg">Riders: {riders.length}</h3>
 
                     <div className="overflow-x-auto">
                         <table className="table table-zebra">

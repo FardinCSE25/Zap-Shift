@@ -22,7 +22,7 @@ const Navbar = () => {
 
         {
             user && <>
-            <li className='px-5 py-4'><NavLink to="/dashboard">Dashboard</NavLink></li>
+                <li className='px-5 py-4'><NavLink to="/dashboard">Dashboard</NavLink></li>
             </>
         }
     </>
@@ -52,7 +52,23 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user &&
-                        <Link onClick={handleLogout} className="btn md:mr-4 mr-1 hover:bg-white hover:border-2 hover:border-primary text-secondary bg-primary">
+                        <div
+                            tabIndex={0}
+                            role="button"
+                            className="btn w-12 btn-ghost btn-circle avatar"
+                        >
+                            <div className="border-2 border-primary rounded-full">
+                                <img
+                                    alt="Tailwind CSS Navbar component"
+                                    referrerPolicy="no-referrer"
+                                    src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                                />
+                            </div>
+                        </div>
+                    }
+                    {
+                        user &&
+                        <Link onClick={handleLogout} className="btn md:mr-4 mr-2 ml-4 hover:bg-white hover:border-2 hover:border-primary text-secondary bg-primary">
                             Logout
                         </Link>
                     }

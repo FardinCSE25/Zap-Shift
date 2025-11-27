@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CiDeliveryTruck } from 'react-icons/ci';
-import { FaUsers } from 'react-icons/fa';
+import { FaTasks, FaUsers } from 'react-icons/fa';
 import { FaMotorcycle, FaRegCreditCard } from 'react-icons/fa6';
 import { Link, Outlet } from 'react-router';
 import useRole from '../Hooks/useRole';
@@ -98,6 +98,11 @@ const DashboardLayout = () => {
 
                         {DrawerItem("/dashboard/payment-history", "Payment History", <FaRegCreditCard />, isOpen)}
 
+                        {role === "rider" && (
+                            <>
+                                {DrawerItem("/dashboard/manage-deliveries", "Manage Deliveries", <FaTasks />, isOpen)}
+                            </>
+                        )}
                         {role === "admin" && (
                             <>
                                 {DrawerItem("/dashboard/manage-users", "Users Management", <FaUsers />, isOpen)}
