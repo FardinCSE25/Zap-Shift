@@ -22,7 +22,7 @@ const Navbar = () => {
 
         {
             user && <>
-            <li className='px-5 py-4'><NavLink to="/dashboard/my-parcels">My Parcels</NavLink></li>
+            <li className='px-5 py-4'><NavLink to="/dashboard">Dashboard</NavLink></li>
             </>
         }
     </>

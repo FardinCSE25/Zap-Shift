@@ -55,7 +55,8 @@ const ApproveRiders = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>District</th>
-                            <th>status</th>
+                            <th>Application Status</th>
+                            <th>Work Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -67,11 +68,12 @@ const ApproveRiders = () => {
                                 <td>{rider.email}</td>
                                 <td>{rider.district}</td>
                                 <td>
-                                    <p className={`${rider.status === 'approved' ? 'text-green-800' : 
-                                        rider.status === 'pending' ? 'text-yellow-500' : 'text-red-500'}`}>
+                                    <p className={`${rider.status === 'Approved' ? 'text-green-800' : 
+                                        rider.status === 'Pending' ? 'text-yellow-500' : 'text-red-500'}`}>
                                         {rider.status}
                                         </p>
                                 </td>
+                                <td>{rider.workStatus}</td>
                                 <td>
                                     <button
                                         onClick={() => handleApproval(rider)} className='btn bg-primary text-black'>
