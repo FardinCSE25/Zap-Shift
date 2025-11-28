@@ -6,30 +6,22 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import UseAuth from '../../Hooks/UseAuth';
 
 const BeRider = () => {
-    const {
-        register,
-        handleSubmit,
-        control,
-        // formState: { errors } 
-    } = useForm();
+    const { register, handleSubmit, control } = useForm();
     const { user } = UseAuth();
     const axiosSecure = useAxiosSecure();
 
     const serviceCenters = useLoaderData();
-    const regionsDuplicate = serviceCenters.map(c => c.region);
-
-    const regions = [...new Set(regionsDuplicate)];
-    // explore useMemo useCallback
-    const districtsByRegion = (region) => {
-        const regionDistricts = serviceCenters.filter(c => c.region === region);
-        const districts = regionDistricts.map(d => d.district);
-        return districts;
-    }
+    const regions = [...new Set(serviceCenters.map(c => c.region))];
 
     const riderRegion = useWatch({ control, name: 'region' });
 
-    const handleRiderApplication = data => {
-        console.log(data);
+    const districtsByRegion = (region) => {
+        return serviceCenters
+            .filter(c => c.region === region)
+            .map(c => c.district);
+    };
+
+    const handleRiderApplication = (data) => {
         axiosSecure.post('/riders', data)
             .then(res => {
                 if (res.data.insertedId) {
@@ -41,82 +33,86 @@ const BeRider = () => {
                         timer: 2000
                     });
                 }
-            })
-    }
+            });
+    };
+
     return (
-        <div>
-            <title>Zap Shift-Be a Rider</title>
-            <h2 className="text-4xl text-secondary ml-60 mt-10">Be a Rider</h2>
-            <form onSubmit={handleSubmit(handleRiderApplication)} className='mt-12 p-4 text-black'>
+        <div className="w-11/12 md:w-3/4 mx-auto my-20 bg-white rounded-2xl shadow-xl border border-secondary/20 p-8">
+            <title>Zap Shift - Be a Rider</title>
+            <h2 className="text-4xl text-secondary font-bold text-center mb-8">Be a Rider</h2>
 
-                {/* two column */}
-                <div className='w-[1000px] mx-auto'>
-                    {/* rider Details */}
+            <form onSubmit={handleSubmit(handleRiderApplication)} className="flex flex-col gap-8">
 
-                    <fieldset className="fieldset">
-                        <h4 className="text-2xl text-secondary font-semibold">Rider Details</h4>
-                        {/* rider name */}
-                        <label className="label text-secondary">Rider Name</label>
-                        <input type="text" {...register('name')}
-                            defaultValue={user?.displayName}
-                            className="input w-full" placeholder="Sender Name" />
+                {/* Rider Details */}
+                <fieldset className="flex flex-col gap-4">
+                    <legend className="text-2xl font-semibold text-secondary">Rider Details</legend>
 
-                        {/* rider email */}
-                        <label className="label text-secondary">Email</label>
-                        <input type="text" {...register('email')}
-                            defaultValue={user?.email}
-                            className="input w-full" placeholder="Sender Email" />
+                    <input 
+                        type="text" 
+                        {...register('name')} 
+                        defaultValue={user?.displayName} 
+                        placeholder="Rider Name" 
+                        className="input w-full border-2 border-primary text-secondary"
+                    />
 
-                        {/* rider region */}
-                        <fieldset className="fieldset">
-                            <legend className="fieldset-legend text-secondary">Regions</legend>
-                            <select {...register('region')} defaultValue="Pick a region" className="select w-full text-secondary">
-                                <option disabled={true}>Pick a region</option>
-                                {
-                                    regions.map((r, i) => <option key={i} value={r}>{r}</option>)
-                                }
-                            </select>
-                        </fieldset>
+                    <input 
+                        type="email" 
+                        {...register('email')} 
+                        defaultValue={user?.email} 
+                        placeholder="Email" 
+                        className="input w-full border-2 border-primary text-secondary"
+                    />
 
-                        {/* rider districts */}
-                        <fieldset className="fieldset">
-                            <legend className="fieldset-legend text-secondary">Districts</legend>
-                            <select {...register('district')} defaultValue="Pick a district" className="select w-full text-secondary">
-                                <option disabled={true}>Pick a district</option>
-                                {
-                                    districtsByRegion(riderRegion).map((r, i) => <option key={i} value={r}>{r}</option>)
-                                }
-                            </select>
-                        </fieldset>
+                    <select {...register('region')} className="select w-full border-2 border-primary text-secondary">
+                        <option disabled>Pick a Region</option>
+                        {regions.map((r, i) => <option key={i} value={r}>{r}</option>)}
+                    </select>
 
+                    <select {...register('district')} className="select w-full border-2 border-primary text-secondary">
+                        <option disabled>Pick a District</option>
+                        {districtsByRegion(riderRegion).map((d, i) => <option key={i} value={d}>{d}</option>)}
+                    </select>
 
-                        {/* rider address */}
-                        <label className="label mt-4 text-secondary">Your Address</label>
-                        <input type="text" {...register('address')} className="input w-full" placeholder="Your Address" />
+                    <input 
+                        type="text" 
+                        {...register('address')} 
+                        placeholder="Your Address" 
+                        className="input w-full border-2 border-primary text-secondary"
+                    />
+                </fieldset>
 
+                {/* License & Bike Details */}
+                <fieldset className="flex flex-col gap-4">
+                    <legend className="text-2xl font-semibold text-secondary">Documents & Bike</legend>
 
-                    </fieldset>
-                    {/* receiver Details */}
-                    <fieldset className="fieldset mt-3">
-                        {/* receiver name */}
-                        <label className="label text-secondary">Driving License</label>
-                        <input type="text" {...register('license')} className="input w-full" placeholder="Driving License" />
+                    <input 
+                        type="text" 
+                        {...register('license')} 
+                        placeholder="Driving License" 
+                        className="input w-full border-2 border-primary text-secondary"
+                    />
 
-                        {/* receiver email */}
-                        <label className="label text-secondary">NID</label>
-                        <input type="text" {...register('nid')} className="input w-full" placeholder="Your NID no" />
+                    <input 
+                        type="text" 
+                        {...register('nid')} 
+                        placeholder="NID Number" 
+                        className="input w-full border-2 border-primary text-secondary"
+                    />
 
+                    <input 
+                        type="text" 
+                        {...register('bike')} 
+                        placeholder="Bike Model" 
+                        className="input w-full border-2 border-primary text-secondary"
+                    />
+                </fieldset>
 
-                        {/* Bike */}
-                        <label className="label mt-4 text-secondary">Bike</label>
-                        <input type="text" {...register('bike')} className="input w-full" placeholder="Bike" />
-                        {/*  address */}
+                <input 
+                    type="submit" 
+                    value="Apply" 
+                    className="btn bg-primary text-black w-44 h-12 self-center mt-4" 
+                />
 
-
-                    </fieldset>
-                    <input type="submit" className='btn bg-primary mt-8 mb-10 text-black' value="Apply" />
-                </div>
-                
             </form>
         </div>
     );

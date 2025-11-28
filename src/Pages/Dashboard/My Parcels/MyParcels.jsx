@@ -8,15 +8,16 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
 const MyParcels = () => {
-    const { user } = UseAuth()
-    const axiosSecure = useAxiosSecure()
+    const { user } = UseAuth();
+    const axiosSecure = useAxiosSecure();
+
     const { data: parcels = [], refetch } = useQuery({
         queryKey: ['myParcels', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/parcels?email=${user.email}`)
-            return res.data
+            const res = await axiosSecure.get(`/parcels?email=${user.email}`);
+            return res.data;
         }
-    })
+    });
 
     const handleParcelDelete = (id) => {
         Swal.fire({
@@ -33,7 +34,7 @@ const MyParcels = () => {
                 axiosSecure.delete(`parcels/${id}`)
                     .then(res => {
                         if (res.data.deletedCount) {
-                            refetch()
+                            refetch();
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your parcel request has been deleted.",
@@ -41,23 +42,26 @@ const MyParcels = () => {
                             });
                         }
                     })
-
             }
         });
-    }
-    return (
+    };
 
-        <div className='w-11/12 mx-auto my-20 bg-base-200 rounded-[20px]'>
-            <title>Zap Shift-My Parcels</title>
-            <h1 className='text-center text-3xl text-secondary py-8 '>
-                All of my Parcels : {parcels.length}
+    return (
+        <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
+
+            <title>Zap Shift - My Parcels</title>
+
+            {/* Header */}
+            <h1 className="text-center text-3xl md:text-4xl font-bold text-secondary py-5">
+                My Parcels <span className="text-primary ml-2">({parcels.length})</span>
             </h1>
-            <div className="overflow-x-auto ml-16">
-                <table className="table table-zebra">
-                    {/* head */}
-                    <thead>
+
+            {/* Table */}
+            <div className="overflow-x-auto mt-6">
+                <table className="table">
+                    <thead className="bg-secondary/10 text-secondary uppercase text-sm font-bold">
                         <tr>
-                            <th>Sl no</th>
+                            <th>Sl No</th>
                             <th>Parcel Name</th>
                             <th>Cost</th>
                             <th>Payment</th>
@@ -65,43 +69,64 @@ const MyParcels = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         {
-                            parcels.map((parcel, index) => <tr key={parcel._id}>
-                                <th>{index + 1}</th>
-                                <td>{parcel.parcelName}</td>
-                                <td>{parcel.cost}</td>
-                                <td>
-                                    {
-                                        parcel.paymentStatus === 'paid' ?
-                                            <span className='text-green-500'>Paid</span> :
-                                            <Link to={`/dashboard/payment/${parcel._id}`}>
-                                                <button className='btn bg-primary text-black'>
-                                                    Pay
-                                                </button>
-                                            </Link>
-                                    }
-                                </td>
-                                <td>{parcel.deliveryStatus}</td>
-                                <td>
-                                    <button className="btn btn-square hover:bg-primary">
-                                        <FaMagnifyingGlass />
-                                    </button>
-                                    <button className="btn btn-square hover:bg-primary mx-2">
-                                        <FaEdit />
-                                    </button>
-                                    <button onClick={() => handleParcelDelete(parcel._id)} className="btn btn-square hover:bg-primary">
-                                        <FaTrash />
-                                    </button>
-                                </td>
-                            </tr>)
-                        }
+                            parcels.map((parcel, index) => (
+                                <tr
+                                    key={parcel._id}
+                                    className="hover:bg-primary/10 transition"
+                                >
+                                    <th className="text-secondary">{index + 1}</th>
+                                    <td className="text-secondary font-medium">{parcel.parcelName}</td>
+                                    <td className="text-secondary">{parcel.cost}</td>
 
+                                    {/* Payment */}
+                                    <td>
+                                        {
+                                            parcel.paymentStatus === 'paid'
+                                                ? <span className="text-primary font-semibold">Paid</span>
+                                                : (
+                                                    <Link to={`/dashboard/payment/${parcel._id}`}>
+                                                        <button className="btn btn-sm bg-primary text-secondary border-none hover:bg-primary/80">
+                                                            Pay
+                                                        </button>
+                                                    </Link>
+                                                )
+                                        }
+                                    </td>
+
+                                    <td className="text-secondary">{parcel.deliveryStatus}</td>
+
+                                    {/* Actions */}
+                                    <td className="flex gap-2">
+                                        <button
+                                            className="btn btn-square bg-secondary text-white hover:bg-secondary/80 border-none"
+                                        >
+                                            <FaMagnifyingGlass />
+                                        </button>
+
+                                        <button
+                                            className="btn btn-square bg-primary text-secondary hover:bg-primary/80 border-none"
+                                        >
+                                            <FaEdit />
+                                        </button>
+
+                                        <button
+                                            onClick={() => handleParcelDelete(parcel._id)}
+                                            className="btn btn-square bg-secondary text-white hover:bg-secondary/80 border-none"
+                                        >
+                                            <FaTrash />
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
-
     );
 };
 

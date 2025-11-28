@@ -4,67 +4,55 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
 const PaymentHistory = () => {
-    const { user } = UseAuth()
-    const axiosSecure = useAxiosSecure()
+    const { user } = UseAuth();
+    const axiosSecure = useAxiosSecure();
+
     const { data: payments = [] } = useQuery({
         queryKey: ['payments', user.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/payments?email=${user.email}`)
-            return res.data
+            const res = await axiosSecure.get(`/payments?email=${user.email}`);
+            return res.data;
         }
-    })
+    });
+
     return (
-        <div className='w-11/12 mx-auto my-20 bg-base-200 rounded-[20px]'>
-            <title>Zap Shift-Payment History</title>
-            <h1 className='text-center text-3xl text-secondary py-8'>
-                Payment History : {payments.length}
+        <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
+
+            <title>Zap Shift - Payment History</title>
+
+            {/* Header */}
+            <h1 className="text-center text-3xl md:text-4xl font-bold text-secondary py-5">
+                Payment History <span className="text-primary ml-2">({payments.length})</span>
             </h1>
-            <div className="overflow-x-auto ml-16">
-                <table className="table table-zebra">
-                    {/* head */}
-                    <thead>
+
+            {/* Table */}
+            <div className="overflow-x-auto mt-6">
+                <table className="table w-full">
+                    <thead className="bg-secondary/10 text-secondary uppercase text-sm font-bold">
                         <tr>
+                            <th>Sl No</th>
                             <th>Parcel Name</th>
                             <th>Amount</th>
                             <th>Payment Date</th>
                             <th>Transaction ID</th>
                             <th>Tracking ID</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {
-                            payments.map((payment) => <tr key={payment._id}>
-                                <td>{payment.parcelName}</td>
-                                <td>{payment.amount}</td>
-                                <td>{payment.paidAt}</td>
-                                {/* <td>
-                                    {
-                                        payment.paymentStatus === 'paid' ?
-                                            <span className='text-secondary'>Paid</span> :
-                                            <Link to={`/dashboard/payment/${payment._id}`}>
-                                                <button className='btn bg-primary text-black'>
-                                                    Pay
-                                                </button>
-                                            </Link>
-                                    }
-                                </td> */}
-                                <td>{payment.transactionId}</td>
-                                <td>{payment.trackingId}</td>
-                                {/* <td>
-                                    <button className="btn btn-square hover:bg-primary">
-                                        <FaMagnifyingGlass />
-                                    </button>
-                                    <button className="btn btn-square hover:bg-primary mx-2">
-                                        <FaEdit />
-                                    </button>
-                                    <button onClick={() => handlepaymentDelete(payment._id)} className="btn btn-square hover:bg-primary">
-                                        <FaTrash />
-                                    </button>
-                                </td> */}
-                            </tr>)
-                        }
 
+                    <tbody>
+                        {payments.map((payment, index) => (
+                            <tr 
+                                key={payment._id} 
+                                className="hover:bg-primary/10 transition"
+                            >
+                                <th className="text-secondary">{index + 1}</th>
+                                <td className="text-secondary font-medium">{payment.parcelName}</td>
+                                <td className="text-secondary font-medium">{payment.amount}</td>
+                                <td className="text-secondary">{new Date(payment.paidAt).toLocaleString()}</td>
+                                <td className="text-secondary font-mono">{payment.transactionId}</td>
+                                <td className="text-primary font-semibold">{payment.trackingId}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

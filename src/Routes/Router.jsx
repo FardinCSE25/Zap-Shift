@@ -23,6 +23,7 @@ import AdminRoute from "./AdminRoute";
 import AssignRiders from "../Pages/Dashboard/Assign Riders/AssignRiders";
 import RiderRoute from "./RiderRoute";
 import ManageDeliveries from "../Pages/Dashboard/Manage Deliveries/ManageDeliveries";
+import Services from "../Pages/Services/Services";
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
+            },
+            {
+                path: 'services',
+                Component: Services
             },
             {
                 path: 'coverage',
