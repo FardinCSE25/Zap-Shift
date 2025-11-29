@@ -111,13 +111,13 @@ const SendParcel = () => {
                         <input type="text" {...register('SenderName')} defaultValue={user?.displayName} placeholder="Sender Name" className='input w-full border-2 border-primary text-secondary mb-3' />
                         <input type="email" {...register('SenderEmail')} defaultValue={user?.email} placeholder="Sender Email" className='input w-full border-2 border-primary text-secondary mb-3' />
 
-                        <select {...register('senderRegion')} className='select w-full border-2 border-primary text-secondary mb-3'>
-                            <option disabled>Pick a Region</option>
+                        <select {...register('senderRegion')} className='select w-full border-2 border-primary text-secondary mb-3' defaultValue="">
+                            <option value="" disabled>Pick a Region</option>
                             {regions.map((r, i) => <option key={i} value={r}>{r}</option>)}
                         </select>
 
-                        <select {...register('senderDistrict')} className='select w-full border-2 border-primary text-secondary mb-3'>
-                            <option disabled>Pick a District</option>
+                        <select {...register('senderDistrict')} className='select w-full border-2 border-primary text-secondary mb-3' defaultValue="">
+                            <option value="" disabled>Pick a District</option>
                             {districtsByRegion(senderRegion).map((d, i) => <option key={i} value={d}>{d}</option>)}
                         </select>
 
@@ -131,13 +131,13 @@ const SendParcel = () => {
                         <input type="text" {...register('ReceiverName')} placeholder="Receiver Name" className='input w-full border-2 border-primary text-secondary mb-3' />
                         <input type="email" {...register('ReceiverEmail')} placeholder="Receiver Email" className='input w-full border-2 border-primary text-secondary mb-3' />
 
-                        <select {...register('receiverRegion')} className='select w-full border-2 border-primary text-secondary mb-3'>
-                            <option disabled>Pick a Region</option>
+                        <select {...register('receiverRegion')} className='select w-full border-2 border-primary text-secondary mb-3' defaultValue="">
+                            <option value="" disabled>Pick a Region</option>
                             {regions.map((r, i) => <option key={i} value={r}>{r}</option>)}
                         </select>
 
-                        <select {...register('receiverDistrict')} className='select w-full border-2 border-primary text-secondary mb-3'>
-                            <option disabled>Pick a District</option>
+                        <select {...register('receiverDistrict')} className='select w-full border-2 border-primary text-secondary mb-3' defaultValue="">
+                            <option value="" disabled>Pick a District</option>
                             {districtsByRegion(receiverRegion).map((d, i) => <option key={i} value={d}>{d}</option>)}
                         </select>
 

@@ -7,77 +7,81 @@ const AboutSection = () => {
 
   const contentMap = {
     Story: `
-  Zap Shift was born from a simple idea — to redefine parcel delivery in Bangladesh. 
-  We noticed that sending and receiving parcels was often slow, unreliable, and stressful for both individuals and businesses. 
-  Starting small, we focused on providing real-time tracking, punctual deliveries, and a customer-first approach. 
-  Over the years, our dedication and innovative logistics solutions transformed us into a trusted partner for thousands of users nationwide. 
-  From sending gifts to managing business shipments, our platform ensures every parcel reaches its destination safely and on time. 
-  Our story is about passion, perseverance, and the relentless pursuit of excellence in the parcel delivery industry.
-  `,
+Zap Shift was born from a simple idea — to redefine parcel delivery in Bangladesh.
+We realized that sending and receiving parcels was often slow, unreliable, and stressful.
+Starting small, we focused on real-time tracking, punctual delivery, and customer-first service.
+Over the years, our dedication transformed Zap Shift into a trusted logistics partner nationwide.
+Our journey is rooted in passion, innovation, and the drive to make delivery smarter and faster.
+    `,
 
     Mission: `
-  At Zap Shift, our mission is to empower Bangladesh with a modern, reliable, and transparent parcel delivery system. 
-  We strive to make parcel management seamless for every user, whether it's an individual, small business, or a large enterprise. 
-  By integrating technology, real-time tracking, automated pricing, OTP-based delivery verification, and nationwide coverage, 
-  we aim to set new standards in logistics efficiency and customer satisfaction. 
-  Our mission goes beyond delivery — we aim to build trust, reduce stress, and enhance convenience for everyone who uses our services.
-  `,
+Our mission is to build a modern, reliable, and transparent parcel delivery ecosystem in Bangladesh.
+We aim to simplify logistics for individuals and businesses through automation, real-time tracking,
+OTP-based secure delivery, and nationwide coverage. We don’t just deliver parcels — we deliver trust,
+convenience, and peace of mind.
+    `,
 
     Success: `
-  Since our inception, Zap Shift has successfully delivered over 500,000 parcels across 64 districts in Bangladesh, 
-  maintaining a remarkable 98% on-time delivery rate. 
-  We have empowered businesses to streamline their logistics, reduced operational delays, and provided individuals with 
-  transparent and reliable delivery experiences. 
-  Our customers enjoy features like real-time parcel tracking, secure OTP-based handoffs, automated cost calculation, 
-  and dedicated support for every query. 
-  Zap Shift's success is driven by technology, operational excellence, and an unwavering commitment to customer satisfaction.
-  `,
+Zap Shift has completed over 500,000 successful deliveries with a 98% on-time success rate.
+We helped businesses streamline logistics and ensured stress-free delivery experiences for individuals.
+Our core achievements include real-time tracking, automated cost calculation, and OTP-secured handoff.
+Our growth is powered by technology, innovation, and customer satisfaction.
+    `,
 
     "Team & Others": `
-  Our team is the heart of Zap Shift. It consists of experienced logistics professionals, software developers, 
-  customer service experts, and warehouse managers. 
-  We have a dedicated network of riders covering 64 districts, ensuring fast, secure, and reliable delivery. 
-  Warehouse staff and regional managers work behind the scenes to coordinate routes, manage inventory, and maintain operational efficiency. 
-  We also collaborate with local partners, vendors, and communities to continuously expand our reach and improve service quality. 
-  Together, our team ensures that every parcel — whether small or large, local or long-distance — 
-  is delivered efficiently, safely, and with care. Our culture emphasizes accountability, innovation, and teamwork, 
-  making Zap Shift a trusted and forward-thinking logistics company in Bangladesh.
-  `
+Our team is the backbone of Zap Shift — logistics experts, developers, support specialists, and managers.
+With a strong network of riders across all 64 districts, we ensure fast, secure delivery everywhere.
+Warehouse teams coordinate routing, safety, and operations behind the scenes.
+Together, we maintain a culture of accountability, innovation, and excellence in nationwide logistics.
+    `
   };
 
-
   return (
-    <section className="max-w-[1600px] mx-auto bg-white rounded-2xl shadow-md px-[109px] py-20 mt-8 mb-20">
-      <title>Zap Shift - About Us</title>
+    <section className="max-w-[1600px] mx-auto mt-10 mb-24">
 
-      {/* Title */}
-      <h2 className="text-5xl font-bold text-secondary mb-4">About Us</h2>
-
-      {/* Subtitle */}
-      <p className="text-gray-600 mb-12 max-w-2xl">
-        Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle.
-        From personal packages to business shipments — we deliver on time, every time.
-      </p>
-
-      {/* Tabs */}
-      <div className="flex gap-8 border-b pb-3">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`text-lg font-bold pb-2 transition-all ${activeTab === tab
-              ? "text-[#5B6A2E] border-b-4 border-primary"
-              : "text-gray-400 hover:text-black"
-              }`}
-          >
-            {tab}
-          </button>
-        ))}
+      {/* Header Section */}
+      <div className="rounded-[40px] bg-gradient-to-r from-primary/20 via-primary/10 to-secondary/10 p-16 shadow-xl">
+        <h2 className="text-6xl font-extrabold text-secondary drop-shadow-sm">
+          About Zap Shift
+        </h2>
+        <p className="text-gray-700 text-xl mt-4 max-w-3xl">
+          Fast, reliable parcel delivery powered by modern logistics — serving individuals,
+          businesses, and everyone in between.
+        </p>
       </div>
 
-      {/* Content */}
-      <div className="mt-8 space-y-6 text-gray-500 leading-relaxed">
-        <p>{contentMap[activeTab]}</p>
+      {/* Main Content Box */}
+      <div className="bg-white rounded-[40px] shadow-lg px-[100px] py-16 mt-10 border border-secondary/20">
+
+        {/* Tabs */}
+        <div className="flex gap-10 border-b border-secondary/20 pb-4 overflow-x-auto">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`relative text-xl font-semibold pb-3 transition-all 
+                ${activeTab === tab
+                  ? "text-secondary"
+                  : "text-gray-400 hover:text-black"
+                }`}
+            >
+              {tab}
+
+              {/* Active Indicator Bar */}
+              {activeTab === tab && (
+                <span className="absolute left-0 right-0 -bottom-[2px] mx-auto w-full h-[4px] bg-primary rounded-full shadow-md transition-all"></span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Content */}
+        <div className="mt-10 p-8 rounded-3xl bg-secondary/5 border border-secondary/10 shadow-inner">
+          <p className="text-gray-600 text-lg leading-relaxed whitespace-pre-line animate-fadeIn">
+            {contentMap[activeTab]}
+          </p>
+        </div>
+
       </div>
     </section>
   );

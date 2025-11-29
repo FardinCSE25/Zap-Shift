@@ -47,36 +47,42 @@ const BeRider = () => {
                 <fieldset className="flex flex-col gap-4">
                     <legend className="text-2xl font-semibold text-secondary">Rider Details</legend>
 
-                    <input 
-                        type="text" 
-                        {...register('name')} 
-                        defaultValue={user?.displayName} 
-                        placeholder="Rider Name" 
+                    <input
+                        type="text"
+                        {...register('name')}
+                        defaultValue={user?.displayName}
+                        placeholder="Rider Name"
                         className="input w-full border-2 border-primary text-secondary"
                     />
 
-                    <input 
-                        type="email" 
-                        {...register('email')} 
-                        defaultValue={user?.email} 
-                        placeholder="Email" 
+                    <input
+                        type="email"
+                        {...register('email')}
+                        defaultValue={user?.email}
+                        placeholder="Email"
                         className="input w-full border-2 border-primary text-secondary"
                     />
 
-                    <select {...register('region')} className="select w-full border-2 border-primary text-secondary">
-                        <option disabled>Pick a Region</option>
-                        {regions.map((r, i) => <option key={i} value={r}>{r}</option>)}
+                    {/* Region */}
+                    <select {...register('region')} className="select w-full border-2 border-primary text-secondary mb-3" defaultValue="">
+                        <option value="" disabled>Pick a Region</option>
+                        {regions.map((r, i) => (
+                            <option key={i} value={r}>{r}</option>
+                        ))}
                     </select>
 
-                    <select {...register('district')} className="select w-full border-2 border-primary text-secondary">
-                        <option disabled>Pick a District</option>
-                        {districtsByRegion(riderRegion).map((d, i) => <option key={i} value={d}>{d}</option>)}
+                    {/* District */}
+                    <select {...register('district')} className="select w-full border-2 border-primary text-secondary mb-3" defaultValue="">
+                        <option value="" disabled>Pick a District</option>
+                        {districtsByRegion(riderRegion).map((d, i) => (
+                            <option key={i} value={d}>{d}</option>
+                        ))}
                     </select>
 
-                    <input 
-                        type="text" 
-                        {...register('address')} 
-                        placeholder="Your Address" 
+                    <input
+                        type="text"
+                        {...register('address')}
+                        placeholder="Your Address"
                         className="input w-full border-2 border-primary text-secondary"
                     />
                 </fieldset>
@@ -85,32 +91,32 @@ const BeRider = () => {
                 <fieldset className="flex flex-col gap-4">
                     <legend className="text-2xl font-semibold text-secondary">Documents & Bike</legend>
 
-                    <input 
-                        type="text" 
-                        {...register('license')} 
-                        placeholder="Driving License" 
+                    <input
+                        type="text"
+                        {...register('license')}
+                        placeholder="Driving License"
                         className="input w-full border-2 border-primary text-secondary"
                     />
 
-                    <input 
-                        type="text" 
-                        {...register('nid')} 
-                        placeholder="NID Number" 
+                    <input
+                        type="text"
+                        {...register('nid')}
+                        placeholder="NID Number"
                         className="input w-full border-2 border-primary text-secondary"
                     />
 
-                    <input 
-                        type="text" 
-                        {...register('bike')} 
-                        placeholder="Bike Model" 
+                    <input
+                        type="text"
+                        {...register('bike')}
+                        placeholder="Bike Model"
                         className="input w-full border-2 border-primary text-secondary"
                     />
                 </fieldset>
 
-                <input 
-                    type="submit" 
-                    value="Apply" 
-                    className="btn bg-primary text-black w-44 h-12 self-center mt-4" 
+                <input
+                    type="submit"
+                    value="Apply"
+                    className="btn bg-primary text-black w-44 h-12 self-center mt-4"
                 />
 
             </form>

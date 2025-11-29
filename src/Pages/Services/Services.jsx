@@ -1,3 +1,4 @@
+import React from "react";
 import { FaTruckFast, FaGlobe, FaWarehouse, FaMoneyBillWave, FaBuilding, FaRotateLeft } from "react-icons/fa6";
 
 export default function Services() {
@@ -47,16 +48,23 @@ export default function Services() {
                 {services.map((item, i) => (
                     <div
                         key={i}
-                        className="card bg-base-100 w-[450px] mx-auto shadow-md rounded-xl p-6 cursor-pointer transition-all duration-300 hover:bg-primary"
+                        className="card bg-base-100 w-[450px] mx-auto shadow-md rounded-xl p-6 cursor-pointer transition-all duration-300 hover:bg-primary group"
                     >
                         <div className="flex justify-center mb-4">
-                            {item.icon}
+                            {React.cloneElement(item.icon, {
+                                className: `${item.icon.props.className} group-hover:text-white transition-colors duration-300`
+                            })}
                         </div>
-                        <h3 className="text-xl font-semibold text-secondary text-center mb-2">
+
+                        <h3 className="text-xl font-semibold text-secondary text-center mb-2 duration-300">
                             {item.title}
                         </h3>
-                        <p className="text-gray-600 text-center">{item.desc}</p>
+
+                        <p className="text-gray-600 text-center duration-300">
+                            {item.desc}
+                        </p>
                     </div>
+
                 ))}
             </div>
         </section>

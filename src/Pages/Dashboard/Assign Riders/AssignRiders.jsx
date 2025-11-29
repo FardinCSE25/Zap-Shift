@@ -43,7 +43,7 @@ const AssignRiders = () => {
                     riderModalRef.current.close();
                     parcelsRefetch();
                     Swal.fire({
-                        position: "top-end",
+                        position: "center",
                         icon: "success",
                         title: `Rider has been assigned.`,
                         showConfirmButton: false,
@@ -97,29 +97,33 @@ const AssignRiders = () => {
 
             {/* Rider Modal */}
             <dialog ref={riderModalRef} className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box bg-white rounded-xl shadow-xl">
-                    <h3 className="font-bold text-lg text-secondary">Riders Available: {riders.length}</h3>
+                <div className="modal-box bg-white rounded-2xl shadow-2xl max-w-[800px] w-[95%] p-8">
+                    {/* Header */}
+                    <h3 className="font-bold text-2xl text-secondary mb-6">
+                        Riders Available: {riders.length}
+                    </h3>
 
-                    <div className="overflow-x-auto mt-4">
-                        <table className="table w-full">
-                            <thead className="bg-secondary/10 text-secondary">
+                    {/* Table Container */}
+                    <div className="overflow-x-auto">
+                        <table className="table table-auto w-full border-separate border-spacing-y-2">
+                            <thead className="bg-secondary/20 text-secondary uppercase text-sm font-semibold">
                                 <tr>
-                                    <th>Sl No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
+                                    <th className="px-4 py-2">Sl No</th>
+                                    <th className="px-4 py-2">Name</th>
+                                    <th className="px-4 py-2">Email</th>
+                                    <th className="px-4 py-2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {riders.map((rider, i) => (
-                                    <tr key={rider._id} className="hover:bg-primary/10 transition">
-                                        <th className="text-secondary">{i + 1}</th>
-                                        <td className="text-secondary font-medium">{rider.name}</td>
-                                        <td className="text-secondary">{rider.email}</td>
-                                        <td>
+                                    <tr key={rider._id} className="hover:bg-primary/10 transition rounded-lg">
+                                        <td className="text-secondary text-center">{i + 1}</td>
+                                        <td className="text-secondary font-medium text-center">{rider.name}</td>
+                                        <td className="text-secondary text-center">{rider.email}</td>
+                                        <td className="text-center">
                                             <button
                                                 onClick={() => handleAssignRider(rider)}
-                                                className='btn bg-primary text-secondary border-none shadow-md hover:opacity-80'
+                                                className="btn bg-primary text-black border-none shadow-md hover:opacity-90 px-4 py-2 rounded-lg"
                                             >
                                                 Assign
                                             </button>
@@ -130,13 +134,17 @@ const AssignRiders = () => {
                         </table>
                     </div>
 
-                    <div className="modal-action">
+                    {/* Close Button */}
+                    <div className="modal-action mt-6 justify-center">
                         <form method="dialog">
-                            <button className="btn bg-secondary text-primary border-none hover:opacity-80">Close</button>
+                            <button className="btn bg-secondary text-primary border-none hover:bg-secondary/90 px-6 py-2 rounded-lg">
+                                Close
+                            </button>
                         </form>
                     </div>
                 </div>
             </dialog>
+
         </div>
     );
 };
