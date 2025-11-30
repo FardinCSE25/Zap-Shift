@@ -50,7 +50,7 @@ const UsersManagement = () => {
 
     return (
         <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
-
+            <title>Zap Shift - Users Management</title>
             <h2 className="text-3xl md:text-4xl font-bold text-secondary text-center mb-8">
                 Manage Users <span className="text-primary ml-2">({users.length})</span>
             </h2>
