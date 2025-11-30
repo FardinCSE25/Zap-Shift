@@ -58,7 +58,13 @@ const CompletedDeliveries = () => {
 
                                 <td className="font-medium text-secondary">{parcel.parcelName}</td>
 
-                                <td>{parcel.createdAt}</td>
+                                <td>{parcel.created_at &&
+                                    new Date(parcel.created_at).toLocaleString("en-GB", {
+                                        day: "2-digit",
+                                        month: "short",
+                                        year: "numeric",
+                                    })
+                                }</td>
 
                                 <td>{parcel.senderDistrict}</td>
 
