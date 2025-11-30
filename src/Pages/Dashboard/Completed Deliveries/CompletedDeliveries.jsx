@@ -25,6 +25,7 @@ const CompletedDeliveries = () => {
 
     return (
         <div className="p-6 md:p-10">
+            <title>Zap Shift - Completed Deliveries</title>
             {/* Header */}
             <div className="mb-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-secondary">

@@ -40,6 +40,7 @@ const ParcelTracking = () => {
 
     return (
         <div className="p-6 md:p-10 flex justify-center">
+            <title>Zap Shift - Parcel Tracking</title>
             {/* Outer card */}
             <div className="bg-white shadow-xl rounded-2xl p-8 md:p-12 w-full max-w-4xl border border-secondary/20">
                 {/* Header */}
