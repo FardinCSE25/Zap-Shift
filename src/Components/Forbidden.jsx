@@ -8,7 +8,7 @@ const Forbidden = () => {
         options={{
           loop: false,
           autoplay: true,
-        //   animationData: forbiddenAnimation,
+          //   animationData: forbiddenAnimation,
         }}
         height={200}
         width={200}

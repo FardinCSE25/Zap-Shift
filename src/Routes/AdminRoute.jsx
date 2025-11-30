@@ -4,7 +4,7 @@ import Loading from '../Components/Loading';
 import useRole from '../Hooks/useRole';
 import Forbidden from '../Components/Forbidden';
 
-const AdminRoute = ({children}) => {
+const AdminRoute = ({ children }) => {
     const { loading } = UseAuth()
     const { role, isLoading } = useRole()
 

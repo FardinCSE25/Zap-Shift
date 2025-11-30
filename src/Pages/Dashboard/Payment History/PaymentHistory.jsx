@@ -41,8 +41,8 @@ const PaymentHistory = () => {
 
                     <tbody>
                         {payments.map((payment, index) => (
-                            <tr 
-                                key={payment._id} 
+                            <tr
+                                key={payment._id}
                                 className="hover:bg-primary/10 transition"
                             >
                                 <th className="text-secondary">{index + 1}</th>

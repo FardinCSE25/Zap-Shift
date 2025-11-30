@@ -70,10 +70,9 @@ const ApproveRiders = () => {
                                 <td className="text-secondary">{rider.email}</td>
                                 <td className="text-secondary">{rider.district}</td>
                                 <td>
-                                    <span className={`font-semibold ${
-                                        rider.status === 'Approved' ? 'text-primary' :
-                                        rider.status === 'Pending' ? 'text-secondary' : 'text-red-500'
-                                    }`}>
+                                    <span className={`font-semibold ${rider.status === 'Approved' ? 'text-primary' :
+                                            rider.status === 'Pending' ? 'text-secondary' : 'text-red-500'
+                                        }`}>
                                         {rider.status}
                                     </span>
                                 </td>

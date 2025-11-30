@@ -24,6 +24,9 @@ import AssignRiders from "../Pages/Dashboard/Assign Riders/AssignRiders";
 import RiderRoute from "./RiderRoute";
 import ManageDeliveries from "../Pages/Dashboard/Manage Deliveries/ManageDeliveries";
 import Services from "../Pages/Services/Services";
+import CompletedDeliveries from "../Pages/Dashboard/Completed Deliveries/CompletedDeliveries";
+import ParcelTracking from "../Pages/Parcel Tracking/ParcelTracking";
+import DashboardHome from "../Pages/Dashboard/Dashboard Home/DashboardHome";
 
 export const router = createBrowserRouter([
     {
@@ -64,6 +67,10 @@ export const router = createBrowserRouter([
                 </PrivateRoute>,
                 loader: () => fetch('/warehouses.json'),
                 hydrateFallbackElement: <Loading />
+            },
+            {
+                path: "parcel-tracking/:id",
+                Component: ParcelTracking
             }
         ]
     },
@@ -87,6 +94,10 @@ export const router = createBrowserRouter([
             <DashboardLayout />
         </PrivateRoute>,
         children: [
+            {
+                index: true,
+                Component: DashboardHome
+            },
             {
                 path: 'my-parcels',
                 Component: MyParcels
@@ -131,7 +142,13 @@ export const router = createBrowserRouter([
                 element: <RiderRoute>
                     <ManageDeliveries />
                 </RiderRoute>
-            }
+            },
+            {
+                path: 'completed-deliveries',
+                element: <RiderRoute>
+                    <CompletedDeliveries />
+                </RiderRoute>
+            },
         ]
     }
 ]);

@@ -65,6 +65,7 @@ const MyParcels = () => {
                             <th>Parcel Name</th>
                             <th>Cost</th>
                             <th>Payment</th>
+                            <th>Tracking ID</th>
                             <th>Delivery Status</th>
                             <th>Actions</th>
                         </tr>
@@ -95,7 +96,11 @@ const MyParcels = () => {
                                                 )
                                         }
                                     </td>
-
+                                    <td>
+                                        <Link to={`parcel-tracking/${parcel.trackingId}`} className='hover:underline hover:text-primary'>
+                                            {parcel.trackingId}
+                                        </Link>
+                                    </td>
                                     <td className="text-secondary">{parcel.deliveryStatus}</td>
 
                                     {/* Actions */}

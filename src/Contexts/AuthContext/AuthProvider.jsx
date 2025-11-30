@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const updateUserProfile =(profile)=>{
+    const updateUserProfile = (profile) => {
         return updateProfile(auth.currentUser, profile)
     }
 

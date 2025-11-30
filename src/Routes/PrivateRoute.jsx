@@ -7,11 +7,11 @@ const PrivateRoute = ({ children }) => {
     const { user, loading } = UseAuth()
     const location = useLocation();
 
-    if(loading){
-        return <Loading/>
+    if (loading) {
+        return <Loading />
     }
 
-    if(!user){
+    if (!user) {
         return <Navigate state={location.pathname} to="/login"></Navigate>
     }
     return children;

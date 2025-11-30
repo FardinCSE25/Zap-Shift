@@ -9,19 +9,19 @@ const Banner = () => {
     return (
         <div className='rounded-[80px]'>
             <Carousel
-            autoPlay={true}
-            infiniteLoop={true}
-        >
-            <div>
-                <img src={banner1} />
-            </div>
-            <div>
-                <img src={banner2} />
-            </div>
-            <div>
-                <img src={banner3} />
-            </div>
-        </Carousel>
+                autoPlay={true}
+                infiniteLoop={true}
+            >
+                <div>
+                    <img src={banner1} />
+                </div>
+                <div>
+                    <img src={banner2} />
+                </div>
+                <div>
+                    <img src={banner3} />
+                </div>
+            </Carousel>
         </div>
     );
 };

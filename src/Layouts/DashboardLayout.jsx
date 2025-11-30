@@ -5,6 +5,7 @@ import { FaMotorcycle, FaRegCreditCard } from 'react-icons/fa6';
 import { Link, Outlet } from 'react-router';
 import useRole from '../Hooks/useRole';
 import { RiEBikeFill } from 'react-icons/ri';
+import { SiGoogletasks } from 'react-icons/si';
 
 const DashboardLayout = () => {
     const { role } = useRole();
@@ -101,6 +102,7 @@ const DashboardLayout = () => {
                         {role === "rider" && (
                             <>
                                 {DrawerItem("/dashboard/manage-deliveries", "Manage Deliveries", <FaTasks />, isOpen)}
+                                {DrawerItem("/dashboard/completed-deliveries", "Completed Deliveries", <SiGoogletasks />, isOpen)}
                             </>
                         )}
                         {role === "admin" && (
