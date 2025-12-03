@@ -26,7 +26,7 @@ We helped businesses streamline logistics and ensured stress-free delivery exper
 Our core achievements include real-time tracking, automated cost calculation, and OTP-secured handoff.
 Our growth is powered by technology, innovation, and customer satisfaction.
     `,
-    "Team & Others": `
+    Team: `
 Our team is the backbone of Zap Shift — logistics experts, developers, support specialists, and managers.
 With a strong network of riders across all 64 districts, we ensure fast, secure delivery everywhere.
 Warehouse teams coordinate routing, safety, and operations behind the scenes.
