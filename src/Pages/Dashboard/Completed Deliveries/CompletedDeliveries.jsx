@@ -24,23 +24,24 @@ const CompletedDeliveries = () => {
     }
 
     return (
-        <div className="p-6 md:p-10">
+        <div className="p-4 sm:p-6 md:p-10">
             <title>Zap Shift - Completed Deliveries</title>
+
             {/* Header */}
-            <div className="mb-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-secondary">
+            <div className="mb-4 sm:mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">
                     Completed Deliveries
                     <span className="text-primary ml-2">({parcels.length})</span>
                 </h2>
-                <p className="text-secondary/70 mt-1">
+                <p className="text-secondary/70 mt-1 text-sm sm:text-base">
                     All parcels you delivered and your payout summary.
                 </p>
             </div>
 
             {/* Table Card */}
-            <div className="overflow-x-auto bg-white shadow-xl rounded-xl border border-secondary/20 p-4">
-                <table className="table">
-                    <thead className="bg-secondary/10 text-secondary font-semibold uppercase text-sm">
+            <div className="overflow-x-auto bg-white shadow-xl rounded-xl border border-secondary/20 p-2 sm:p-4">
+                <table className="table w-full min-w-[600px] sm:min-w-full">
+                    <thead className="bg-secondary/10 text-secondary font-semibold uppercase text-xs sm:text-sm">
                         <tr>
                             <th>#</th>
                             <th>Parcel Name</th>
@@ -55,11 +56,11 @@ const CompletedDeliveries = () => {
                     <tbody>
                         {parcels.map((parcel, i) => (
                             <tr key={parcel._id} className="hover:bg-primary/10 transition">
-                                <th className="text-secondary">{i + 1}</th>
+                                <th className="text-secondary text-xs sm:text-sm md:text-base">{i + 1}</th>
 
-                                <td className="font-medium text-secondary">{parcel.parcelName}</td>
+                                <td className="font-medium text-secondary text-xs sm:text-sm md:text-base">{parcel.parcelName}</td>
 
-                                <td>{parcel.created_at &&
+                                <td className="text-xs sm:text-sm md:text-base">{parcel.created_at &&
                                     new Date(parcel.created_at).toLocaleString("en-GB", {
                                         day: "2-digit",
                                         month: "short",
@@ -67,14 +68,14 @@ const CompletedDeliveries = () => {
                                     })
                                 }</td>
 
-                                <td>{parcel.senderDistrict}</td>
+                                <td className="text-xs sm:text-sm md:text-base">{parcel.senderDistrict}</td>
 
-                                <td className="font-semibold text-secondary">{parcel.cost}</td>
+                                <td className="font-semibold text-secondary text-xs sm:text-sm md:text-base">{parcel.cost}</td>
 
-                                <td className="font-bold text-primary">{handleRiderPayment(parcel)}</td>
+                                <td className="font-bold text-primary text-xs sm:text-sm md:text-base">{handleRiderPayment(parcel)}</td>
 
                                 <td>
-                                    <button className="btn btn-sm bg-primary text-secondary hover:bg-primary/80 border-none shadow">
+                                    <button className="btn btn-xs sm:btn-sm md:btn-sm bg-primary text-secondary hover:bg-primary/80 border-none shadow">
                                         Cash out
                                     </button>
                                 </td>
