@@ -86,7 +86,7 @@ const AssignRiders = () => {
                                 <td>
                                     <button
                                         onClick={() => openAssignRiderModal(parcel)}
-                                        className='btn bg-primary text-secondary border-none shadow-md hover:opacity-80'
+                                        className='btn py-5 bg-primary text-secondary border-none shadow-md hover:opacity-80'
                                     >
                                         Find Riders
                                     </button>
@@ -101,7 +101,7 @@ const AssignRiders = () => {
             {/* Rider Modal */}
             {/* Rider Modal */}
             <dialog ref={riderModalRef} className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box bg-white rounded-2xl shadow-2xl w-full sm:w-[95%] max-w-[800px] h-[auto] sm:h-auto p-6 sm:p-8">
+                <div className="modal-box bg-white rounded-2xl shadow-2xl w-full sm:w-[95%] max-w-[800px] h-auto sm:h-auto p-6 sm:p-8">
                     {/* Header */}
                     <h3 className="font-bold text-xl sm:text-2xl text-secondary mb-4 sm:mb-6 text-center sm:text-left">
                         Riders Available: {riders.length}

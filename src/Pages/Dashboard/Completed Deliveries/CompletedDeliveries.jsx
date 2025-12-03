@@ -75,7 +75,7 @@ const CompletedDeliveries = () => {
                                 <td className="font-bold text-primary text-xs sm:text-sm md:text-base">{handleRiderPayment(parcel)}</td>
 
                                 <td>
-                                    <button className="btn btn-xs sm:btn-sm md:btn-sm bg-primary text-secondary hover:bg-primary/80 border-none shadow">
+                                    <button className="btn btn-sm w-[76px] md:btn-sm bg-primary text-secondary hover:bg-primary/80 border-none shadow py-5">
                                         Cash out
                                     </button>
                                 </td>
