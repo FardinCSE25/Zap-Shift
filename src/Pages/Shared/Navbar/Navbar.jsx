@@ -68,7 +68,15 @@ const Navbar = () => {
                                 </>
                             )}
 
-                            <li><Link to="/be-rider" className='btn btn-sm btn-outline text-secondary border-primary mt-2'>Be a Rider</Link></li>
+                            {
+                                role !== 'rider' &&
+                                <li>
+                                    <Link to="/be-rider" className="btn btn-outline border-2 border-primary text-secondary hover:bg-primary">
+                                    Be a Rider
+                                </Link>
+                                </li>
+
+                            }
                         </ul>
                     </div>
 
@@ -108,11 +116,11 @@ const Navbar = () => {
                     )}
 
                     {
-                        role !== 'rider' && 
-                            <Link to="/be-rider" className="btn btn-outline border-2 border-primary text-secondary hover:bg-primary">
-                                Be a Rider
-                            </Link>
-                        
+                        role !== 'rider' &&
+                        <Link to="/be-rider" className="btn btn-outline border-2 border-primary text-secondary hover:bg-primary">
+                            Be a Rider
+                        </Link>
+
                     }
                 </div>
 
