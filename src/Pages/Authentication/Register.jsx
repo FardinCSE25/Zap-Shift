@@ -73,8 +73,8 @@ const Register = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4 ">
-            <div className="card w-full max-w-md sm:max-w-lg bg-white shadow-2xl rounded-3xl overflow-hidden">
-        <title>Zap Shift -Register</title>
+            <div className="card w-full max-w-md sm:max-w-lg bg-white shadow-2xl my-10 rounded-3xl overflow-hidden">
+                <title>Zap Shift -Register</title>
                 {/* Header */}
                 <div className="bg-primary/10 p-8 text-center">
                     <h1 className='text-3xl sm:text-4xl font-bold text-secondary'>Create an Account</h1>
@@ -82,7 +82,7 @@ const Register = () => {
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit(handleRegister)} className='p-8 my-10 space-y-5'>
+                <form onSubmit={handleSubmit(handleRegister)} className='p-8 space-y-5'>
 
                     {/* Name */}
                     <div>
