@@ -1,11 +1,18 @@
 import React from 'react';
 import Logo from '../../../Components/Logo/Logo';
+import Loading from '../../../Components/Loading'
 import { Link, NavLink } from 'react-router';
 import "./navbar.css";
 import UseAuth from '../../../Hooks/UseAuth';
+import useRole from '../../../Hooks/useRole';
 
 const Navbar = () => {
     const { user, logOut } = UseAuth();
+    const { isLoading, role } = useRole()
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     const handleLogout = () => {
         logOut().catch(error => console.log(error));
@@ -100,9 +107,13 @@ const Navbar = () => {
                         </>
                     )}
 
-                    <Link to="/be-rider" className="btn btn-outline border-2 border-primary text-secondary hover:bg-primary">
-                        Be a Rider
-                    </Link>
+                    {
+                        role !== 'rider' && (
+                            <Link to="/be-rider" className="btn btn-outline border-2 border-primary text-secondary hover:bg-primary">
+                                Be a Rider
+                            </Link>
+                        )
+                    }
                 </div>
 
             </div>

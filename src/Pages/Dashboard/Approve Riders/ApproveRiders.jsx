@@ -26,7 +26,7 @@ const ApproveRiders = () => {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: `Rider status is set to ${status}.`,
+                        title: `Rider ${rider.name} has been ${status}`,
                         showConfirmButton: false,
                         timer: 2000
                     });

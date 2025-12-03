@@ -23,7 +23,7 @@ const AuthLayout = () => {
             </div>
 
             {/* Right side image */}
-            <div className='flex-1 hidden lg:flex bg-[#FAFDF0] h-[1200px]'>
+            <div className='flex-1 hidden lg:flex bg-[#FAFDF0] h-[1080px]'>
                 <div className='m-auto'>
                     <img src={img} alt="Auth Illustration" className='max-h-[80vh] object-contain' />
                 </div>

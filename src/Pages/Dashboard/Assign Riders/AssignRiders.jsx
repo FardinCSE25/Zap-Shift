@@ -47,7 +47,7 @@ const AssignRiders = () => {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: `Rider has been assigned.`,
+                        title: `Rider ${rider.name} assigned to "${selectedParcel.parcelName}"`,
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -81,7 +81,7 @@ const AssignRiders = () => {
                                 <th className="text-secondary">{index + 1}</th>
                                 <td className="text-secondary font-medium">{parcel.parcelName}</td>
                                 <td className="text-secondary">{parcel.cost}</td>
-                                <td className="text-secondary">{parcel.created_at}</td>
+                                <td className="text-secondary">{new Date(parcel.created_at).toLocaleString()}</td>
                                 <td className="text-secondary">{parcel.senderDistrict}</td>
                                 <td>
                                     <button
@@ -98,34 +98,36 @@ const AssignRiders = () => {
             </div>
 
             {/* Rider Modal */}
+            {/* Rider Modal */}
+            {/* Rider Modal */}
             <dialog ref={riderModalRef} className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box bg-white rounded-2xl shadow-2xl max-w-[800px] w-[95%] p-8">
+                <div className="modal-box bg-white rounded-2xl shadow-2xl w-full sm:w-[95%] max-w-[800px] h-[auto] sm:h-auto p-6 sm:p-8">
                     {/* Header */}
-                    <h3 className="font-bold text-2xl text-secondary mb-6">
+                    <h3 className="font-bold text-xl sm:text-2xl text-secondary mb-4 sm:mb-6 text-center sm:text-left">
                         Riders Available: {riders.length}
                     </h3>
 
                     {/* Table Container */}
-                    <div className="overflow-x-auto">
-                        <table className="table table-auto w-full border-separate border-spacing-y-2">
-                            <thead className="bg-secondary/20 text-secondary uppercase text-sm font-semibold">
+                    <div className="overflow-x-auto overflow-y-auto max-h-[60vh] sm:max-h-[80vh]">
+                        <table className="table table-auto w-full border-separate border-spacing-y-2 text-sm sm:text-base">
+                            <thead className="bg-secondary/20 text-secondary uppercase font-semibold text-xs sm:text-sm">
                                 <tr>
-                                    <th className="px-4 py-2">Sl No</th>
-                                    <th className="px-4 py-2">Name</th>
-                                    <th className="px-4 py-2">Email</th>
-                                    <th className="px-4 py-2">Action</th>
+                                    <th className="px-2 sm:px-4 py-2">Sl No</th>
+                                    <th className="px-2 sm:px-4 py-2">Name</th>
+                                    <th className="px-2 sm:px-4 py-2">Email</th>
+                                    <th className="px-2 sm:px-4 py-2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {riders.map((rider, i) => (
                                     <tr key={rider._id} className="hover:bg-primary/10 transition rounded-lg">
-                                        <td className="text-secondary text-center">{i + 1}</td>
-                                        <td className="text-secondary font-medium text-center">{rider.name}</td>
-                                        <td className="text-secondary text-center">{rider.email}</td>
-                                        <td className="text-center">
+                                        <td className="text-secondary text-center px-2 sm:px-4">{i + 1}</td>
+                                        <td className="text-secondary font-medium text-center px-2 sm:px-4">{rider.name}</td>
+                                        <td className="text-secondary text-center px-2 sm:px-4">{rider.email}</td>
+                                        <td className="text-center px-2 sm:px-4">
                                             <button
                                                 onClick={() => handleAssignRider(rider)}
-                                                className="btn bg-primary text-black border-none shadow-md hover:opacity-90 px-4 py-2 rounded-lg"
+                                                className="btn bg-primary text-black border-none shadow-md hover:opacity-90 px-3 sm:px-4 py-1 sm:py-2 rounded-lg w-full sm:w-auto"
                                             >
                                                 Assign
                                             </button>
@@ -137,9 +139,9 @@ const AssignRiders = () => {
                     </div>
 
                     {/* Close Button */}
-                    <div className="modal-action mt-6 justify-center">
-                        <form method="dialog">
-                            <button className="btn bg-secondary text-primary border-none hover:bg-secondary/90 px-6 py-2 rounded-lg">
+                    <div className="modal-action mt-4 sm:mt-6 justify-center">
+                        <form method="dialog" className="w-full flex justify-center">
+                            <button className="btn bg-secondary text-primary border-none hover:bg-secondary/90 px-6 py-2 rounded-lg w-full sm:w-auto">
                                 Close
                             </button>
                         </form>
