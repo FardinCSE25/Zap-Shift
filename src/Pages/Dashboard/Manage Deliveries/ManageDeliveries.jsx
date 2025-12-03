@@ -23,7 +23,7 @@ const ManageDeliveries = () => {
             trackingId: parcel.trackingId
         }
 
-        let message = `Parcel Status is updated with ${status.split('_').join(' ')}`
+        let message = `Parcel status has been updated to "${status.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}".`;
 
         axiosSecure.patch(`/parcels/${parcel._id}/status`, statusInfo)
             .then(res => {
