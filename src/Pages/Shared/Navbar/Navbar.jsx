@@ -46,10 +46,10 @@ const Navbar = () => {
                         </button>
 
                         <ul tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-white rounded-lg mt-3 w-56 p-3 shadow border border-gray-200 z-20">
+                            className="menu menu-sm dropdown-content bg-white rounded-lg mt-3 w-56 pt-3 px-3 shadow border border-gray-200 z-20">
 
                             {user && (
-                                <li className="flex items-center gap-3">
+                                <li className="flex items-center gap-0">
                                     <div className="avatar rounded-full overflow-hidden">
                                         <img src={user.photoURL} className="rounded-full w-10 h-10" />
                                     </div>
