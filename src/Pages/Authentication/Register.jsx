@@ -82,7 +82,7 @@ const Register = () => {
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit(handleRegister)} className='p-8 space-y-5'>
+                <form onSubmit={handleSubmit(handleRegister)} className='p-8 my-10 space-y-5'>
 
                     {/* Name */}
                     <div>
