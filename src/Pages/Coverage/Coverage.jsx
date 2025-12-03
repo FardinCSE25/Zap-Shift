@@ -15,30 +15,36 @@ const Coverage = () => {
             center.district.toLowerCase().includes(location.toLowerCase())
         );
         if (district) {
-            const found = [district.latitude, district.longitude];
-            mapRef.current.flyTo(found, 12);
+            mapRef.current.flyTo([district.latitude, district.longitude], 12);
         }
     };
 
     return (
-        <div className="bg-white rounded-[80px] mb-28 mt-10 px-[100px] py-20 shadow-xl border border-secondary/20">
+        <div className="
+            bg-white rounded-[40px] mb-20 mt-10 
+            px-5 sm:px-10 lg:px-[100px] py-10 sm:py-16 lg:py-20 
+            shadow-xl border border-secondary/20
+        ">
             <title>Zap Shift - Coverage</title>
 
             {/* Page Title */}
-            <h3 className="text-5xl font-extrabold text-secondary mb-4">
-                Nationwide Coverage
-            </h3>
-            <p className="text-gray-600 text-lg mb-12">
-                We are available across <span className="text-primary font-semibold mr-1">all 64 districts</span>
-                of Bangladesh—offering fast, secure, and reliable delivery everywhere.
-            </p>
+            <div className="text-center lg:text-left">
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-secondary mb-4">
+                    Nationwide Coverage
+                </h3>
+                <p className="text-gray-600 text-base sm:text-lg mb-10 max-w-2xl mx-auto lg:mx-0">
+                    We are available across
+                    <span className="text-primary font-semibold mx-1">all 64 districts</span>
+                    of Bangladesh—offering fast, secure, and reliable delivery everywhere.
+                </p>
+            </div>
 
             {/* Search Section */}
-            <div className="max-w-xl">
+            <div className="max-w-xl w-full mx-auto lg:mx-0">
                 <form onSubmit={handleSearch} className="flex">
                     <div className="relative w-full">
 
-                        {/* Search icon */}
+                        {/* Search Icon */}
                         <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400">
                             <svg className="h-[1.3em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <g strokeLinejoin="round" strokeLinecap="round"
@@ -54,17 +60,23 @@ const Coverage = () => {
                             type="search"
                             name="search"
                             placeholder="Search district..."
-                            className="w-full pl-14 pr-36 py-4 rounded-[20px] border border-secondary/30 
-                                       focus:border-primary focus:ring-2 focus:ring-primary/40 outline-none 
-                                       text-black shadow-sm transition-all"
+                            className="
+                                w-full pl-14 pr-32 sm:pr-40 py-4 
+                                rounded-[20px] border border-secondary/30 
+                                focus:border-primary focus:ring-2 focus:ring-primary/40 
+                                outline-none text-black shadow-sm transition-all
+                            "
                         />
 
                         {/* Button */}
                         <button
                             type="submit"
-                            className="absolute right-2 top-1/2 -translate-y-1/2 
-                                       bg-primary text-black font-semibold rounded-[15px] 
-                                       px-6 py-3 hover:bg-primary/90 transition"
+                            className="
+                                absolute right-2 top-1/2 -translate-y-1/2 
+                                bg-primary text-black font-semibold 
+                                rounded-[15px] px-4 sm:px-6 py-3 
+                                hover:bg-primary/90 transition text-sm sm:text-base
+                            "
                         >
                             Search
                         </button>
@@ -73,13 +85,18 @@ const Coverage = () => {
             </div>
 
             {/* Map */}
-            <div className="h-[720px] mt-12 overflow-hidden rounded-[40px] border border-secondary/30 shadow-lg">
+            <div className="
+                h-[400px] sm:h-[520px] lg:h-[720px] 
+                mt-10 sm:mt-12 overflow-hidden 
+                rounded-[20px] sm:rounded-[30px] lg:rounded-[40px] 
+                border border-secondary/30 shadow-lg
+            ">
                 <MapContainer
                     ref={mapRef}
                     center={position}
                     zoom={7.5}
                     scrollWheelZoom={false}
-                    className="h-full w-full rounded-[40px]"
+                    className="h-full w-full"
                 >
                     <TileLayer
                         attribution='&copy; OpenStreetMap contributors'

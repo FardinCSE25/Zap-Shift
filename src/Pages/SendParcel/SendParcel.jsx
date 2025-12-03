@@ -12,6 +12,7 @@ const SendParcel = () => {
     const axiosSecure = useAxiosSecure();
 
     const serviceCenters = useLoaderData();
+    console.log("Service Centers:", serviceCenters);
     const regions = [...new Set(serviceCenters.map(center => center.region))];
 
     const senderRegion = useWatch({ control, name: 'senderRegion' });
@@ -23,10 +24,10 @@ const SendParcel = () => {
             .map(center => center.district);
     };
 
-    const handleSendParcel = (data) => {
+    const handleSendParcel = async (data) => {
         const sameDistrict = data.senderDistrict === data.receiverDistrict;
         const isDocument = data.parcelType === 'Document';
-        const weight = parseFloat(data.parcelWeight);
+        const weight = parseFloat(data.parcelWeight) || 0;
 
         let cost = 0;
         if (isDocument) {
@@ -44,7 +45,7 @@ const SendParcel = () => {
 
         data.cost = cost;
 
-        Swal.fire({
+        const result = await Swal.fire({
             title: `Your cost: ${cost}`,
             text: "Confirm Payment?",
             icon: "warning",
@@ -52,23 +53,30 @@ const SendParcel = () => {
             confirmButtonColor: "#CAEB66",
             cancelButtonColor: "#FF0000",
             confirmButtonText: "<span style='color:black'>Yes</span>"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axiosSecure.post('/parcels', data)
-                    .then(res => {
-                        if (res.data.insertedId) {
-                            navigate('/dashboard/my-parcels');
-                            Swal.fire({
-                                title: "Done!",
-                                text: "Your parcel has been created",
-                                icon: "success",
-                                timer: 2500,
-                                showConfirmButton: false
-                            });
-                        }
-                    });
-            }
         });
+
+        if (result.isConfirmed) {
+            try {
+                const res = await axiosSecure.post('/parcels', data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: "Done!",
+                        text: "Your parcel has been created",
+                        icon: "success",
+                        timer: 2500,
+                        showConfirmButton: false
+                    });
+                    navigate('/dashboard/my-parcels');
+                }
+            } catch (err) {
+                console.log(err);
+                Swal.fire({
+                    title: "Error",
+                    text: "Parcel could not be sent",
+                    icon: "error"
+                });
+            }
+        }
     };
 
     return (

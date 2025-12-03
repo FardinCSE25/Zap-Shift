@@ -16,7 +16,7 @@ const Brands = () => {
     return (
         <section className="my-32 bg-[#F5F7EB] py-16 px-4 rounded-3xl shadow-inner">
             {/* Section Title */}
-            <h1 className="text-4xl font-bold text-secondary text-center mb-16 tracking-wide">
+            <h1 className="text-2xl lg:text-4xl font-bold text-secondary text-center mb-16 tracking-wide">
                 We've Helped Thousands of Sales Teams
             </h1>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { FaTruckFast, FaGlobe, FaWarehouse, FaMoneyBillWave, FaBuilding, FaRotateLeft } from "react-icons/fa6";
 
 export default function Services() {
@@ -37,6 +38,9 @@ export default function Services() {
 
     return (
         <section className="bg-secondary rounded-xl my-20 py-16 px-5">
+            <Helmet>
+                <title>Zap Shift - Services</title>
+            </Helmet>
             <div className="max-w-7xl mx-auto text-center mb-10">
                 <h2 className="text-3xl font-bold text-primary">Our Services</h2>
                 <p className="text-gray-200 mt-2 max-w-2xl mx-auto">
@@ -44,11 +48,14 @@ export default function Services() {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Fully Responsive Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 {services.map((item, i) => (
                     <div
                         key={i}
-                        className="card bg-base-100 w-[450px] mx-auto shadow-md rounded-xl p-6 cursor-pointer transition-all duration-300 hover:bg-primary group"
+                        className="card bg-base-100 w-full shadow-md rounded-xl p-6 
+                                   cursor-pointer transition-all duration-300
+                                   hover:bg-primary group"
                     >
                         <div className="flex justify-center mb-4">
                             {React.cloneElement(item.icon, {
@@ -56,15 +63,14 @@ export default function Services() {
                             })}
                         </div>
 
-                        <h3 className="text-xl font-semibold text-secondary text-center mb-2 duration-300">
+                        <h3 className="text-xl font-semibold text-secondary text-center mb-3 group-hover:text-white transition">
                             {item.title}
                         </h3>
 
-                        <p className="text-gray-600 text-center duration-300">
+                        <p className="text-gray-600 text-center group-hover:text-white transition">
                             {item.desc}
                         </p>
                     </div>
-
                 ))}
             </div>
         </section>

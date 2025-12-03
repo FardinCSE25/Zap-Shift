@@ -7,7 +7,7 @@ import banner3 from "../../../assets/banner/banner3.png";
 
 const Banner = () => {
     return (
-        <div className='rounded-[80px]'>
+        <div className='rounded-[20px] md:rounded-[40px] lg:rounded-[80px] overflow-hidden'>
             <Carousel
                 autoPlay={true}
                 infiniteLoop={true}

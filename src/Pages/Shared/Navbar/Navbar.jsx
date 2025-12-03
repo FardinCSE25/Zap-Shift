@@ -5,90 +5,106 @@ import "./navbar.css";
 import UseAuth from '../../../Hooks/UseAuth';
 
 const Navbar = () => {
-    const { user, logOut } = UseAuth()
+    const { user, logOut } = UseAuth();
 
     const handleLogout = () => {
-        logOut()
-            .then()
-            .catch(error => {
-                console.log(error);
-            })
-    }
-    const links = <>
-        <li className='px-5 py-4'><NavLink to="/services">Services</NavLink></li>
-        <li className='px-5 py-4'><NavLink to="/coverage">Coverage</NavLink></li>
-        <li className='px-5 py-4'><NavLink to="/about-us">About Us</NavLink></li>
-        <li className='px-5 py-4'><NavLink to="/send-parcel">Send Parcel</NavLink></li>
+        logOut().catch(error => console.log(error));
+    };
 
-        {
-            user && <>
-                <li className='px-5 py-4'><NavLink to="/dashboard">Dashboard</NavLink></li>
-            </>
-        }
-    </>
-
+    const links = (
+        <>
+            <li><NavLink to="/services">Services</NavLink></li>
+            <li><NavLink to="/coverage">Coverage</NavLink></li>
+            <li><NavLink to="/about-us">About Us</NavLink></li>
+            <li><NavLink to="/send-parcel">Send Parcel</NavLink></li>
+            {user && <li><NavLink to="/dashboard">Dashboard</NavLink></li>}
+        </>
+    );
 
     return (
-        <div className='py-7 flex justify-center items-center'>
-            <div className="navbar py-2 px-8 rounded-[20px] bg-white shadow-sm">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-                        </div>
-                        <ul
-                            tabIndex="-1"
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <div className="py-4 flex justify-center w-full">
+            <div className="navbar w-full bg-white shadow-sm px-5 py-3 rounded-xl">
+
+                {/* LEFT — Logo + Mobile Menu */}
+                <div className="navbar-start flex items-center gap-2">
+
+                    {/* Mobile Hamburger */}
+                    <div className="dropdown lg:hidden">
+                        <button tabIndex={0} className="btn btn-ghost p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+
+                        <ul tabIndex={0}
+                            className="menu menu-sm dropdown-content bg-white rounded-lg mt-3 w-56 p-3 shadow border border-gray-200 z-20">
+
+                            {user && (
+                                <li className="flex items-center gap-3">
+                                    <div className="avatar rounded-full overflow-hidden">
+                                        <img src={user.photoURL} className="rounded-full w-10 h-10" />
+                                    </div>
+                                    <span className="font-semibold">{user.displayName}</span>
+                                </li>
+                            )}
+
                             {links}
+
+                            {user ? (
+                                <li><button onClick={handleLogout} className='btn btn-sm bg-primary text-secondary mt-2'>Logout</button></li>
+                            ) : (
+                                <>
+                                    <li><Link to="/login" className='btn btn-sm bg-primary text-secondary mt-2'>Login</Link></li>
+                                    <li><Link to="/register" className='btn btn-sm bg-primary text-secondary mt-2'>Register</Link></li>
+                                </>
+                            )}
+
+                            <li><Link to="/be-rider" className='btn btn-sm btn-outline text-secondary border-primary mt-2'>Be a Rider</Link></li>
                         </ul>
                     </div>
-                    <Link to="/" className="pl-3 mb-4 text-xl"><Logo /></Link>
+
+                    {/* Logo */}
+                    <Link to="/" className="ml-5 cursor-pointer"><Logo /></Link>
                 </div>
+
+                {/* CENTER (Desktop Menu) */}
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="text-accent menu menu-horizontal">
+                    <ul className="menu menu-horizontal gap-2">
                         {links}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    {
-                        user &&
-                        <div
-                            tabIndex={0}
-                            role="button"
-                            className="btn w-12 btn-ghost btn-circle avatar"
-                        >
-                            <div className="border-2 border-primary rounded-full">
-                                <img
-                                    alt="Tailwind CSS Navbar component"
-                                    referrerPolicy="no-referrer"
-                                    src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
-                                />
-                            </div>
-                        </div>
-                    }
-                    {
-                        user &&
-                        <Link onClick={handleLogout} className="btn md:mr-4 mr-2 ml-4 hover:bg-white hover:border-2 hover:border-primary text-secondary bg-primary">
-                            Logout
-                        </Link>
-                    }
-                    {
-                        !user &&
-                        <Link to="/login" className="btn md:mr-4 mr-1 hover:bg-white hover:border-2 hover:border-primary text-secondary bg-primary">
-                            Login
-                        </Link>
-                    }
 
-                    {
-                        !user &&
-                        <Link to="/register" className="btn md:mr-4 mr-1 hover:bg-white hover:border-2 hover:border-primary text-secondary bg-primary">
-                            Register
-                        </Link>
-                    }
-                    <Link to="/be-rider" className="btn btn-outline border-2 hover:bg-primary border-primary bg-gray-100 text-secondary">
+                {/* RIGHT — Buttons (Desktop Only) */}
+                <div className="navbar-end hidden mr-5 lg:flex items-center gap-4">
+
+                    {user && (
+                        <div className="avatar w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
+                            <img src={user.photoURL} className="object-cover w-full h-full" />
+                        </div>
+                    )}
+
+                    {user ? (
+                        <button onClick={handleLogout} className="btn bg-primary text-secondary hover:bg-white hover:border-primary">
+                            Logout
+                        </button>
+                    ) : (
+                        <>
+                            <Link to="/login" className="btn bg-primary text-secondary hover:bg-white hover:border-primary">
+                                Login
+                            </Link>
+                            <Link to="/register" className="btn bg-primary text-secondary hover:bg-white hover:border-primary">
+                                Register
+                            </Link>
+                        </>
+                    )}
+
+                    <Link to="/be-rider" className="btn btn-outline border-2 border-primary text-secondary hover:bg-primary">
                         Be a Rider
                     </Link>
                 </div>
+
             </div>
         </div>
     );
