@@ -108,11 +108,11 @@ const Navbar = () => {
                     )}
 
                     {
-                        role !== 'rider' && (
+                        role !== 'rider' && 
                             <Link to="/be-rider" className="btn btn-outline border-2 border-primary text-secondary hover:bg-primary">
                                 Be a Rider
                             </Link>
-                        )
+                        
                     }
                 </div>
 
